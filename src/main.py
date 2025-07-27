@@ -3,7 +3,10 @@ import os
 
 
 def main():
-   pass
+    text = "これはテスト出力です。"
+    with open("output.txt", "w", encoding="utf-8") as f:
+      f.write(text)
+    print("output.txt にテキストを書き込みました。")
 
 if __name__ == "__main__":
     main()
