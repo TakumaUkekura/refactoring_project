@@ -1,1 +1,5 @@
-[{'customer': 'BigCo', 'performances': [{'playID': 'hamlet', 'audience': 55}, {'playID': 'as-like', 'audience': 35}, {'playID': 'othello', 'audience': 40}]}]{'hamlet': {'name': 'Hamlet', 'type': 'tragedy'}, 'as-like': {'name': 'As You Like It', 'type': 'comedy'}, 'othello': {'name': 'Othello', 'type': 'tragedy'}}
+請求書
+BigCo
+・Hamlet（観客数：55人、金額：$65000)
+・As You Like It（観客数：35人、金額：$58000)
+・Othello（観客数：40人、金額：$50000)
