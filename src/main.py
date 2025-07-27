@@ -1,6 +1,13 @@
 import json
 import os
 
+def load_json():
+    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
+        invoices = json.load(f)
+    with open("input/PLAYS.json", "r", encoding="utf-8") as f:
+        plays = json.load(f)
+    return invoices, plays
+
 def calculation(type, audience):
     point = 0
     if type == "tragedy":
@@ -19,10 +26,8 @@ def calculation(type, audience):
 
 
 def main():
-    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
-        invoices = json.load(f)
-    with open("input/PLAYS.json", "r", encoding="utf-8") as f:
-        plays = json.load(f)
+
+    invoices, plays = load_json()    
 
     print(invoices[0])
     print(plays)
@@ -44,7 +49,7 @@ def main():
     content += "合計金額：$" + str(total_amount) + "\n"
     content += "獲得ポイント：" + str(total_point) + "pt"
 
-    with open("./output/output.txt", "w", encoding="utf-8") as f:
+    with open("./output/invoice.txt", "w", encoding="utf-8") as f:
       f.write(content)     
     print("output.txt にテキストを書き込みました。")
 
