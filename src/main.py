@@ -8,8 +8,10 @@ def main():
     with open("input/PLAYS.json", "r", encoding="utf-8") as f:
         plays = json.load(f)
 
+    content = str(invoices) + str(plays)
+
     with open("./output/output.txt", "w", encoding="utf-8") as f:
-      f.write(str(invoices))     
+      f.write(content)     
     print("output.txt にテキストを書き込みました。")
 
 if __name__ == "__main__":
