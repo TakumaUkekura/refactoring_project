@@ -2,15 +2,20 @@ import json
 import os
 
 def calculation(type, audience):
+    point = 0
     if type == "tragedy":
         amount = 40000
         if audience > 30:
             amount += (audience - 30)*1000
+            point += (audience - 30)
     elif type == "comedy":
         amount = 30000 + audience*300
+        point += audience//5
         if audience > 20:
             amount += 10000 + (audience - 20)*500
-    return amount         
+            if audience > 30:
+                point += (audience - 30)
+    return amount, point
 
 
 def main():
@@ -26,10 +31,18 @@ def main():
         print(i['audience'])        
         print(plays[i['playID']]['name'])
         print(plays[i['playID']]['type'])
-
+    
+    total_amount = 0
+    total_point = 0
     content = "請求書\n" + invoices[0]['customer'] + "\n"
     for i in invoices[0]['performances']:
-        content += "・" + plays[i['playID']]['name'] +  "（観客数：" + str(i['audience']) + "人、" + "金額：$" + str(calculation(plays[i['playID']]['type'], i['audience'])) + ")\n"
+        amount, point = calculation(plays[i['playID']]['type'], i['audience'])
+        total_amount += amount
+        total_point += point
+        content += "・" + plays[i['playID']]['name'] +  "（観客数：" + str(i['audience']) + "人、" + "金額：$" + str(amount) + ")\n"
+    
+    content += "合計金額：$" + str(total_amount) + "\n"
+    content += "獲得ポイント：" + str(total_point) + "pt"
 
     with open("./output/output.txt", "w", encoding="utf-8") as f:
       f.write(content)     
